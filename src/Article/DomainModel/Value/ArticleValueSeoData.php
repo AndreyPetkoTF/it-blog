@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\DomainLayer\ValueObject;
+namespace App\Article\DomainModel\Value;
 
-class SeoData
+class ArticleValueSeoData
 {
     /**
      * @var string

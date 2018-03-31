@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\InfrastructureLayer\Collection;
+namespace App\Article\DomainModel;
 
 class ArticleCollection
 {

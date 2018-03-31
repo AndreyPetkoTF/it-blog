@@ -27,10 +27,12 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    mysql_article_repository:
-        class: App\InfrastructureLayer\Repository\MysqlArticleRepository
+    db_article_repository:
+        class: App\Article\DomainModel\DbArticleRepository
+        arguments:
+          - "@doctrine.orm.entity_manager"
 
     article_service:
-        class: App\ServiceLayer\Service\ArticleService
+        class: App\Article\Application\ArticleService
         arguments:
-          - "@mysql_article_repository"
+          - "@db_article_repository"

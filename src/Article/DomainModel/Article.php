@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\DomainLayer\Domain;
+namespace App\Article\DomainModel;
 
-use App\DomainLayer\ValueObject\SeoData;
+use App\Article\DomainModel\Value\ArticleValueSeoData;
 
 class Article
 {
@@ -13,7 +13,7 @@ class Article
     private $id;
 
     /**
-     * @var SeoData
+     * @var ArticleValueSeoData
      */
     private $seoData;
 
@@ -22,7 +22,12 @@ class Article
      */
     private $content;
 
-    public function __construct(int $id, SeoData $seoData, string $content)
+    /**
+     * @param int                 $id
+     * @param ArticleValueSeoData $seoData
+     * @param string              $content
+     */
+    function __construct(int $id, ArticleValueSeoData $seoData, string $content)
     {
         $this->id = $id;
         $this->seoData = $seoData;
@@ -38,17 +43,25 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @param int $id
      */
-    public function getSeoData()
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return ArticleValueSeoData
+     */
+    public function getSeoData(): ArticleValueSeoData
     {
         return $this->seoData;
     }
 
     /**
-     * @param mixed $seoData
+     * @param ArticleValueSeoData $seoData
      */
-    public function setSeoData(SeoData $seoData)
+    public function setSeoData(ArticleValueSeoData $seoData)
     {
         $this->seoData = $seoData;
     }

@@ -1,6 +1,0 @@
-App\Entity\Hello:
-  properties:
-    name:
-      id:
-        expose: true
-        groups: [Default]

@@ -9,16 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HelloController extends Controller
+class ArticleController extends Controller
 {
     /**
-     * @Route("/", name="index")
+     * @Route("/{id}", name="index")
      *
+     * @param int $id
+     * @return mixed
      */
-    public function indexAction()
+    public function indexAction(int $id)
     {
-
         $articleService = $this->get('article_service');
+        return $articleService->findById($id);
 
 //        $serializer = SerializerBuilder::create()->build();
 //        $jsonContent = $serializer->serialize($list, 'json', SerializationContext::create()->setGroups(['list']));

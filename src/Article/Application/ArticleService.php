@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\ServiceLayer\Service;
+namespace App\Article\Application;
 
-use App\InfrastructureLayer\Repository\ArticleRepository;
+use App\Article\DomainModel\ArticleRepository;
 
 class ArticleService
 {
@@ -12,11 +12,18 @@ class ArticleService
      */
     private $articleRepository;
 
-    function __construct(ArticleRepository $articleRepository)
+    /**
+     * @param ArticleRepository $articleRepository
+     */
+    public function __construct(ArticleRepository $articleRepository)
     {
         $this->articleRepository = $articleRepository;
     }
 
+    /**
+     * @param int $id
+     * @return mixed
+     */
     public function findById(int $id)
     {
         return $this->articleRepository->findById($id);
