@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Article\Infrastructure;
 
+use App\Article\DomainModel\ArticleFactory;
 use App\Article\DomainModel\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -17,13 +18,20 @@ class DbArticleRepository implements ArticleRepository
      * @var EntityManagerInterface
      */
     private $entityManager;
+    /**
+     * @var ArticleFactory
+     */
+    private $articleFactory;
+
 
     /**
      * @param EntityManagerInterface $entityManager
+     * @param ArticleFactory         $articleFactory
      */
-    function __construct(EntityManagerInterface $entityManager)
+    function __construct(EntityManagerInterface $entityManager, ArticleFactory $articleFactory)
     {
         $this->entityManager = $entityManager;
+        $this->articleFactory = $articleFactory;
     }
 
     /**
@@ -39,6 +47,8 @@ class DbArticleRepository implements ArticleRepository
         $stmt->bindValue(':id', $id);
         $stmt->execute();
 
-        return $stmt->fetch();
+        $result = $stmt->fetch();
+
+        return $this->articleFactory->createByArray($result);
     }
 }
