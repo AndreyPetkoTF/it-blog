@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Article\DomainModel;
+namespace App\Article\Infrastructure;
+
+use App\Article\DomainModel\ArticleCollectionRepository;
 
 class DbArticleCollectionRepository implements ArticleCollectionRepository
 {

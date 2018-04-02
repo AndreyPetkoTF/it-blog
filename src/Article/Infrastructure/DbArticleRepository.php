@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Article\DomainModel;
+namespace App\Article\Infrastructure;
 
-use Doctrine\ORM\EntityManager;
+use App\Article\DomainModel\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 /**
  * Class DbArticleRepository
@@ -12,14 +14,14 @@ use Doctrine\ORM\EntityManager;
 class DbArticleRepository implements ArticleRepository
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $entityManager;
 
     /**
-     * @param EntityManager $entityManager
+     * @param EntityManagerInterface $entityManager
      */
-    function __construct(EntityManager $entityManager)
+    function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }

@@ -28,11 +28,7 @@ services:
     # please note that last definitions always *replace* previous ones
 
     db_article_repository:
-        class: App\Article\DomainModel\DbArticleRepository
-        arguments:
-          - "@doctrine.orm.entity_manager"
+        class: App\Article\Infrastructure\DbArticleRepository
 
     article_service:
         class: App\Article\Application\ArticleService
-        arguments:
-          - "@db_article_repository"

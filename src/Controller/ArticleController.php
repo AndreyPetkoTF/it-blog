@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Article\Application\ArticleService;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,9 +18,10 @@ class ArticleController extends Controller
      * @param int $id
      * @return mixed
      */
-    public function indexAction(int $id)
+    public function indexAction(int $id, ArticleService $articleService)
     {
-        $articleService = $this->get('article_service');
+        $articleService->findById($id);
+
         return $articleService->findById($id);
 
 //        $serializer = SerializerBuilder::create()->build();
