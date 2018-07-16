@@ -50,35 +50,4 @@ class CreateArticle extends ArticleCommand
     }
 }
 
-//interface Arrayable {
-//    public function toArray();
-//}
-//
-//class A {
-//    public function toArray() {
-//        return [];
-//    }
-//    public function blebleblebl() {
-//        return [];
-//    }
-//}
-//
-//new OtherClass((new A())->toArray());
-//new OtherClass((new A())->blebleblebl());
-//
-//class SomeOtherClass {
-//    public function __construct(Arrayable $a)
-//    {
-//        $this->a = $a->toArray();
-//    }
-//
-//
-//}
-//
-//
-//new SomeOtherClass(new A());
-//
-//
-
-
 
