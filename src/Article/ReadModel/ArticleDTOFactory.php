@@ -4,29 +4,30 @@ declare(strict_types=1);
 namespace App\Article\DomainModel;
 
 use App\Article\DomainModel\Value\ArticleValueSeoData;
+use App\Article\ReadModel\ArticleDTO;
 
-class ArticleFactory
+class ArticleDTOFactory
 {
     /**
      * @param int    $id
      * @param string $title
      * @param string $description
      * @param string $content
-     *
-     * @return Article
+     * @return ArticleDTO
      */
-    public function create(int $id, string $title, string $description, string $content): Article
+    public function create(int $id, string $title, string $description, string $content): ArticleDTO
     {
         $seoData = new ArticleValueSeoData($title, $description);
 
-        return new Article($id, $seoData, $content);
+        return new ArticleDTO($id, $seoData, $content);
     }
+
 
     /**
      * @param array $data
-     * @return Article
+     * @return ArticleDTO
      */
-    public function createByArray(array $data): Article
+    public function fromArray(array $data): ArticleDTO
     {
         $this->checkValidArray($data);
 

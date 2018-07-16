@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Article\Application;
+namespace App\Article\ReadModel;
 
 use App\Article\DomainModel\ArticleRepository;
 
-class ArticleService
+class ArticleReadModel
 {
     /**
      * @var ArticleRepository

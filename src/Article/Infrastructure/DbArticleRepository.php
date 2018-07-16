@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace App\Article\Infrastructure;
 
-use App\Article\DomainModel\ArticleFactory;
+use App\Article\DomainModel\ArticleDTOFactory;
 use App\Article\DomainModel\ArticleRepository;
+use App\Article\ReadModel\ArticleDTO;
 use Doctrine\ORM\EntityManagerInterface;
 
 
@@ -18,27 +19,23 @@ class DbArticleRepository implements ArticleRepository
      * @var EntityManagerInterface
      */
     private $entityManager;
-    /**
-     * @var ArticleFactory
-     */
-    private $articleFactory;
-
 
     /**
-     * @param EntityManagerInterface $entityManager
-     * @param ArticleFactory         $articleFactory
+     * @var ArticleDTOFactory
      */
-    function __construct(EntityManagerInterface $entityManager, ArticleFactory $articleFactory)
+    private $articleDTOFactory;
+
+    function __construct(EntityManagerInterface $entityManager, ArticleDTOFactory $articleDTOFactory)
     {
         $this->entityManager = $entityManager;
-        $this->articleFactory = $articleFactory;
+        $this->articleDTOFactory = $articleDTOFactory;
     }
 
     /**
      * @param int $id
-     * @return mixed
+     * @return ArticleDTO
      */
-    public function findById(int $id)
+    public function findById(int $id): ArticleDTO
     {
         $sql = 'SELECT * FROM article WHERE id = :id';
 
@@ -49,6 +46,6 @@ class DbArticleRepository implements ArticleRepository
 
         $result = $stmt->fetch();
 
-        return $this->articleFactory->createByArray($result);
+        return $this->articleDTOFactory->fromArray($result);
     }
 }
